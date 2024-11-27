@@ -24,9 +24,9 @@ void LED::init(){
 
 void LED::setlight(int light){
   if (light > 100) {
-    digitalWrite(pin,ON);
+    digitalWrite(pin,LOW);
   }
   else{
-    digitalWrite(pin,OFF);
+    digitalWrite(pin,HIGH);
   }
 }
