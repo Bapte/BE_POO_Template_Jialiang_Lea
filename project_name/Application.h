@@ -5,6 +5,7 @@
  *********************************************************************/
 #ifndef APPLICATION_H_
 #define APPLICATION_H_
+#include "bibliotheque.h"
 
 /**
   * @class Application
