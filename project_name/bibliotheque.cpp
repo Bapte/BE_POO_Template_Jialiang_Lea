@@ -23,5 +23,5 @@ void LED::init(){
 }
 
 void LED::setlight(int light){
-  
+  analogWrite(pin,light);
 }
