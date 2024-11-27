@@ -23,10 +23,13 @@ void LED::init(){
 }
 
 void LED::setlight(int light){
+  analogWrite(pin, light);
+  /*
   if (light > 100) {
     digitalWrite(pin,LOW);
   }
   else{
     digitalWrite(pin,HIGH);
   }
+  */
 }
