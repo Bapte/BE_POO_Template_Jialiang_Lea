@@ -6,8 +6,8 @@
 Application myApplication;
 rgb_lcd lcd;
 
-const int pinbutton = D7;
-const int pinsound = A0;
+const int pinLED = D7;
+const int pinlightsensor = A0;
 
 const int colorR = 255;
 const int colorG = 255;
@@ -19,8 +19,8 @@ const int colorB = 255;
 long lastTime;
 
 
-Lightsensor lightsensor(A0);
-LED led(BUILTIN_LED, 0);
+Lightsensor lightsensor(pinlightsensor);
+LED led(pinLED,0);
 void setup() {
   Serial.begin(74880);
   Serial.println("BONJOUR\nJE DEMARRE");
@@ -48,8 +48,10 @@ void loop() {
     Serial.printf("valeur light = %d\n", light);
     //affiche sur LCD
     lcd.clear();
-    //lcd.setCursor(0,0);
-    lcd.printf("valeur light = %d\n", light);
+    lcd.setCursor(0,0);
+    lcd.print("valeur light:");
+    lcd.setCursor(0,1);
+    lcd.print(light);
   }
 
   // put your main code here, to run repeatedly:

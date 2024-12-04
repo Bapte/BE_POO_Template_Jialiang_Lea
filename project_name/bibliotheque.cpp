@@ -23,8 +23,8 @@ void LED::init(){
 }
 
 void LED::setlight(int light){
-  int ledbrightness = map(light,730,0,0,255);
-  analogWrite(pin, light);
+  int ledbrightness = map(light,1024,0,0,255);
+  analogWrite(pin, ledbrightness);
   /*
   if (light > 100) {
     digitalWrite(pin,LOW);
