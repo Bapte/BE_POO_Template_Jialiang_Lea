@@ -8,19 +8,18 @@ rgb_lcd lcd;
 
 const int pinLED = D7;
 const int pinlightsensor = A0;
+const int pinbutton = D3;
 
-const int colorR = 255;
-const int colorG = 255;
-const int colorB = 255;
 
 // LEDS sur BUILTIN_LED et une autre sur D0
 
 
 long lastTime;
-
+bool etat = false;
 
 Lightsensor lightsensor(pinlightsensor);
 LED led(pinLED,0);
+Button but(pinbutton);
 void setup() {
   Serial.begin(74880);
   Serial.println("BONJOUR\nJE DEMARRE");
@@ -31,7 +30,6 @@ void setup() {
 
   //set LCD
   lcd.begin(16,2);
-  //lcd.setRGB(colorR,colorG,colorB);
   lcd.print("Light Sensor");
 
   lastTime = 0;
@@ -41,9 +39,9 @@ void setup() {
 
 void loop() {
   int light = lightsensor.getlight();
-
-//affiche valeur light tous les 2s
-  if (millis() - lastTime > 2000) {
+  
+//affiche valeur light tous les 1s
+  if (millis() - lastTime > 1000) {
     lastTime = millis();
     Serial.printf("valeur light = %d\n", light);
     //affiche sur LCD
@@ -58,6 +56,6 @@ void loop() {
 
 
   led.setlight(light);
-
+ 
   // interdit delay(2000);
 }
