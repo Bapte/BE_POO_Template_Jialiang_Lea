@@ -27,6 +27,7 @@ void setup() {
   Serial.begin(115200);
   lightsensor.init();
   led.init();
+  but.init();
 
   //set LCD
   lcd.begin(16,2);
@@ -39,6 +40,10 @@ void setup() {
 
 void loop() {
   int light = lightsensor.getlight();
+
+  if (but.get_buttonState() == HIGH){
+    etat = !etat;
+  }
   
 //affiche valeur light tous les 1s
   if (millis() - lastTime > 1000) {
@@ -46,16 +51,18 @@ void loop() {
     Serial.printf("valeur light = %d\n", light);
     //affiche sur LCD
     lcd.clear();
-    lcd.setCursor(0,0);
+    lcd.setCursor(0,0);//permier rang
     lcd.print("valeur light:");
-    lcd.setCursor(0,1);
+    lcd.setCursor(0,1);//deuxieme rang
     lcd.print(light);
   }
 
   // put your main code here, to run repeatedly:
 
-
-  led.setlight(light);
- 
+  if(etat){
+    led.setlight(light);
+  }else{
+    led.setlight(1024);//LED ferme
+  }
   // interdit delay(2000);
 }

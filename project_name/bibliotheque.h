@@ -38,9 +38,9 @@ public:
 
 class Button: public Device{
   public :
-  Button(int p) :Device(p);
+  Button(int p) :Device(p){}
   void init();
   int get_buttonState();
-}
+};
 
 #endif
