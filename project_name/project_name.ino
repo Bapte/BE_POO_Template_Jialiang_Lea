@@ -16,9 +16,6 @@ const int pinbutton = D8;
 
 long lastTime;
 bool etat = true;
-int lastButtonState = LOW; 
-long lastControlTime = 0; 
-const long pressDelay = 50; 
 
 Lightsensor lightsensor(pinlightsensor);
 LED led(pinLED,0);
@@ -45,17 +42,12 @@ void loop() {
   int light = lightsensor.getlight();
 
   int currentButtonState = but.get_buttonState();
-  if (currentButtonState != lastButtonState) {
-    lastControlTime = millis();//note lors on press le button
+  if (currentButtonState == HIGH) {
+    delay(5);
+    if (currentButtonState == HIGH){
+      etat = !etat;  // change l'etat LED
+    }            
   }
-
-  if ((millis() - lastControlTime) > pressDelay) {
-    if (currentButtonState != lastButtonState) {
-        etat = !etat; // change l'etat LED
-    }
-  }
-
-  lastButtonState = currentButtonState; // renouveau button state
   
 //affiche valeur light tous les 1s
   if (millis() - lastTime > 1000) {
@@ -67,6 +59,7 @@ void loop() {
     lcd.print("valeur light:");
     lcd.setCursor(0,1);//deuxieme rang
     lcd.print(light);
+    Serial.println(etat ? "LED ON" : "LED OFF");
   }
 
   // put your main code here, to run repeatedly:

@@ -39,7 +39,7 @@ void LED::setlight(int light){
 
 
 void Button::init(){
-  pinMode(pin,INPUT_PULLUP);
+  pinMode(pin,INPUT);
 }
 int Button::get_buttonState(){
   return digitalRead(pin);
