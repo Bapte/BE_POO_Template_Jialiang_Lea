@@ -49,6 +49,7 @@ void loop() {
   if (millis() - lastTime > 1000) {
     lastTime = millis();
     Serial.printf("valeur light = %d\n", light);
+    Serial.printf("valeur light = %d\n", light);
     //affiche sur LCD
     lcd.clear();
     lcd.setCursor(0,0);//permier rang
