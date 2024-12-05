@@ -15,7 +15,10 @@ const int pinbutton = D8;
 
 
 long lastTime;
-bool etat = false;
+bool etat = true;
+int lastButtonState = LOW; 
+long lastControlTime = 0; 
+const long pressDelay = 50; 
 
 Lightsensor lightsensor(pinlightsensor);
 LED led(pinLED,0);
@@ -41,9 +44,18 @@ void setup() {
 void loop() {
   int light = lightsensor.getlight();
 
-  if (but.get_buttonState() == HIGH){
-    etat = !etat;
+  int currentButtonState = but.get_buttonState();
+  if (currentButtonState != lastButtonState) {
+    lastControlTime = millis();//note lors on press le button
   }
+
+  if ((millis() - lastControlTime) > pressDelay) {
+    if (currentButtonState != lastButtonState) {
+        etat = !etat; // change l'etat LED
+    }
+  }
+
+  lastButtonState = currentButtonState; // renouveau button state
   
 //affiche valeur light tous les 1s
   if (millis() - lastTime > 1000) {
