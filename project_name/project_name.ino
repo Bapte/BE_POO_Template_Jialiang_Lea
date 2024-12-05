@@ -6,9 +6,9 @@
 Application myApplication;
 rgb_lcd lcd;
 
-const int pinLED = D7;
+const int pinLED = D6;
 const int pinlightsensor = A0;
-const int pinbutton = D3;
+const int pinbutton = D8;
 
 
 // LEDS sur BUILTIN_LED et une autre sur D0
@@ -48,7 +48,6 @@ void loop() {
 //affiche valeur light tous les 1s
   if (millis() - lastTime > 1000) {
     lastTime = millis();
-    Serial.printf("valeur light = %d\n", light);
     Serial.printf("valeur light = %d\n", light);
     //affiche sur LCD
     lcd.clear();
