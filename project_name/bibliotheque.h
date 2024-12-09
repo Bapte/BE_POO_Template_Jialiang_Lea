@@ -35,12 +35,12 @@ public:
   void setlight(int l);
 };
 
-
 class Button: public Device{
   public :
   Button(int p) :Device(p){}
   void init();
   int get_buttonState();
 };
+
 
 #endif

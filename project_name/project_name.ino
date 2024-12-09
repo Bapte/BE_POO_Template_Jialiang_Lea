@@ -41,9 +41,10 @@ void setup() {
 void loop() {
   int light = lightsensor.getlight();
 
+  /*Verifier la state de Button et si on a appuye le button on change l'etat de LED*/
   int currentButtonState = but.get_buttonState();
   if (currentButtonState == HIGH) {
-    delay(5);
+    delay(10);
     if (currentButtonState == HIGH){
       etat = !etat;  // change l'etat LED
     }            
